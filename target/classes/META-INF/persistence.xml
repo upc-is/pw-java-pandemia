@@ -10,6 +10,7 @@
 		<class>pe.edu.upc.pandemia.models.entities.Department</class>
 		<class>pe.edu.upc.pandemia.models.entities.Employee</class>
 		<class>pe.edu.upc.pandemia.models.entities.Job</class>
+		<class>pe.edu.upc.pandemia.models.entities.Language</class>
 		<class>pe.edu.upc.pandemia.models.entities.Location</class>
 		<class>pe.edu.upc.pandemia.models.entities.Region</class>		
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>

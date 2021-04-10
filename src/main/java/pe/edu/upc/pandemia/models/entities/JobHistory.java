@@ -17,7 +17,7 @@ public class JobHistory {	// Upper Camel Case
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
-	@Column(name = "start_date")
+	@Column(name = "end_date")
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
