@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,8 +48,12 @@ public class Employee {	// Upper Camel case
 	@Column(name = "commission_pct", columnDefinition = "DECIMAL(2,2)")
 	private Float commissionPct;
 	
-	private Employee manager;
+	@ManyToOne
+	@JoinColumn(name = "manager_id")
+	private Employee manager;		// Relation Ship - consigo mismo
 	
+	@ManyToOne
+	@JoinColumn(name = "department_id", nullable = true)
 	private Department department;
 	
 	private List<JobHistory> jobHistories;
@@ -55,5 +63,6 @@ public class Employee {	// Upper Camel case
 	// for Employee type manager
 	private Department departmentManager;	
 	
-	private List<Employee> departmentEmployees;
+	@OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+	private List<Employee> departmentEmployees; 	// Relation Ship - consigo mismo
 }

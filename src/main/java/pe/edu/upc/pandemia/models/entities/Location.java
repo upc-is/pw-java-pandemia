@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,7 +32,10 @@ public class Location {
 	@Column(name = "state_province", length = 25)
 	private String stateProvince;
 	
+	@ManyToOne
+	@JoinColumn(name = "country_id", nullable = false)
 	private Country country;	// Country_id
 	
+	@OneToMany(mappedBy = "location")
 	private List<Department> departments;
 }

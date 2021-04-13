@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,5 +22,6 @@ public class Region {
 	@Column(name = "region_name", length = 25)
 	private String name;
 	
+	@OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
 	private List<Country> contries;
 }
