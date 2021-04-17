@@ -10,8 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,6 +43,8 @@ public class Employee {	// Upper Camel case
 	@Temporal(TemporalType.DATE)
 	private Date hireDate;
 	
+	@ManyToOne
+	@JoinColumn(name = "job_id", nullable = false)
 	private Job job;
 	
 	@Column(name = "salary", columnDefinition = "DECIMAL(8,2)")
@@ -56,13 +61,23 @@ public class Employee {	// Upper Camel case
 	@JoinColumn(name = "department_id", nullable = true)
 	private Department department;
 	
+	@OneToMany(mappedBy = "employee")
 	private List<JobHistory> jobHistories;
 	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "employees_languages", 
+			joinColumns = { @JoinColumn(referencedColumnName = "employee_id", name = "employee_id") },
+			inverseJoinColumns = {@JoinColumn(referencedColumnName = "language_id", name = "language_id")})
 	private List<Language> languages;
 	
-	// for Employee type manager
+	// for Employee job(rol) Manager
+	@OneToOne
+	@JoinColumn(name = "manager_id", nullable = true)
 	private Department departmentManager;	
 	
 	@OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
 	private List<Employee> departmentEmployees; 	// Relation Ship - consigo mismo
+	
+	@OneToOne(mappedBy = "employee")
+	private User user;
 }

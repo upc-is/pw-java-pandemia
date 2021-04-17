@@ -4,17 +4,26 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-//@Entity
+@Entity
 @Table(name = "job_history")
+@IdClass(JobHistoryId.class)
 public class JobHistory {	// Upper Camel Case
+	
+	@Id
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "employee_id", nullable = false)
 	private Employee employee;
 	
+	@Id
 	@Column(name = "start_date")
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
@@ -23,6 +32,8 @@ public class JobHistory {	// Upper Camel Case
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
+	@ManyToOne
+	@JoinColumn(name = "job_id", nullable = false)
 	private Job job;
 	
 	@ManyToOne

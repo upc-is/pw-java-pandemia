@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +25,7 @@ public class Department {
 	@Column(name = "department_name", length = 30)
 	private String name;
 	
+	@OneToOne(mappedBy = "departmentManager", fetch = FetchType.EAGER)
 	private Employee manager;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +36,6 @@ public class Department {
 	private List<Employee> employees;
 	
 	// Desbloquear cuando se crea el Primary Key Compuesto
-	//@OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
 	private List<JobHistory> jobHistories;
 }
