@@ -1,5 +1,6 @@
 package pe.edu.upc.pandemia.models.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,4 +31,59 @@ public class Job {
 	
 	@OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
 	private List<JobHistory> jobHistories;
+	
+	// -- Constructor, Getter y Setter
+	public Job() {
+		employees = new ArrayList<Employee>();
+		jobHistories = new ArrayList<JobHistory>();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Integer getMinSalary() {
+		return minSalary;
+	}
+
+	public void setMinSalary(Integer minSalary) {
+		this.minSalary = minSalary;
+	}
+
+	public Integer getMaxSalary() {
+		return maxSalary;
+	}
+
+	public void setMaxSalary(Integer maxSalary) {
+		this.maxSalary = maxSalary;
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
+	public List<JobHistory> getJobHistories() {
+		return jobHistories;
+	}
+
+	public void setJobHistories(List<JobHistory> jobHistories) {
+		this.jobHistories = jobHistories;
+	}
+	
 }

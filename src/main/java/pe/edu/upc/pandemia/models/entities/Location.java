@@ -1,5 +1,6 @@
 package pe.edu.upc.pandemia.models.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,16 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Locations")
+@Table(name = "Locations", 
+		indexes = { @Index(columnList = "city", name = "locations_index_city"), 
+					@Index(columnList = "state_province", name = "location_index_state_province")})
+@SequenceGenerator(name = "genLocation", initialValue = 1, allocationSize = 1)
 public class Location {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genLocation")
 	@Column(name = "location_id", columnDefinition = "NUMERIC(4)")
 	private Integer id;
 	
@@ -38,4 +44,66 @@ public class Location {
 	
 	@OneToMany(mappedBy = "location")
 	private List<Department> departments;
+	
+	// -- Constructor, Getter y Setter
+	public Location() {
+		departments = new ArrayList<Department>();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getStateProvince() {
+		return stateProvince;
+	}
+
+	public void setStateProvince(String stateProvince) {
+		this.stateProvince = stateProvince;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public List<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(List<Department> departments) {
+		this.departments = departments;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package pe.edu.upc.pandemia.models.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -24,4 +25,34 @@ public class Region {
 	
 	@OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
 	private List<Country> contries;
+	
+	// -- Constructor, Getter y Setter
+	public Region() {
+		contries = new ArrayList<Country>();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Country> getContries() {
+		return contries;
+	}
+
+	public void setContries(List<Country> contries) {
+		this.contries = contries;
+	}
+	
 }
