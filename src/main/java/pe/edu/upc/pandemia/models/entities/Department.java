@@ -18,10 +18,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Departments")
-@SequenceGenerator(name = "getDepartment", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "Department_department_id_seq", initialValue = 1, allocationSize = 1)
 public class Department {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "getDepartment")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Department_department_id_seq")
 	@Column(name = "department_id", columnDefinition = "NUMERIC(4)")	// PostgreSQL
 	private Integer id;
 	

@@ -15,10 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "languages")
-@SequenceGenerator( name = "genLanguage", initialValue = 1, allocationSize = 1 )
+@SequenceGenerator( name = "Languages_language_id_seq", initialValue = 1, allocationSize = 1 )
 public class Language {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genLanguage")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Languages_language_id_seq")
 	@Column(name = "language_id", columnDefinition = "NUMERIC(2)")
 	private Integer id;
 	

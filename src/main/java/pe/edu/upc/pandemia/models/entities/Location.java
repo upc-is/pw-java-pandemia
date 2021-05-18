@@ -19,10 +19,10 @@ import javax.persistence.Table;
 @Table(name = "Locations", 
 		indexes = { @Index(columnList = "city", name = "locations_index_city"), 
 					@Index(columnList = "state_province", name = "location_index_state_province")})
-@SequenceGenerator(name = "genLocation", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "Locations_location_id_seq", initialValue = 1, allocationSize = 1)
 public class Location {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genLocation")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Locations_location_id_seq")
 	@Column(name = "location_id", columnDefinition = "NUMERIC(4)")
 	private Integer id;
 	

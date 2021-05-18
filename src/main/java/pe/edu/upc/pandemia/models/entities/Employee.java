@@ -27,10 +27,10 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "Employees", 
 		indexes = { @Index(columnList = "last_name, first_name", name = "employees_index_last_first_name") }, 
 		uniqueConstraints = { @UniqueConstraint( columnNames = { "email" } ) })
-@SequenceGenerator(name = "genEmployee", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "Employees_employee_id_seq", initialValue = 1, allocationSize = 1)
 public class Employee {	// Upper Camel case
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genEmployee")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Employees_employee_id_seq")
 	@Column(name = "employee_id", columnDefinition = "NUMERIC(6)")
 	private Integer id;
 	
